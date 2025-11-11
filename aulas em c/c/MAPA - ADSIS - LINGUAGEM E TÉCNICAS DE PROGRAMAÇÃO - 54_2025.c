@@ -109,7 +109,7 @@ int cadastrarLivros(struct Livro acervo[], int livrosJaCadastrados, int tamanhoM
             if (!codigo_existe) break;
         }
         acervo[i].codigo = codigo_temp;
-        limparBuffer(); // Consome o newline deixado pelo scanf
+        limparBuffer(); // Consome a linha deixado pelo scanf
 
         printf("Título: ");
         fgets(acervo[i].titulo, sizeof(acervo[i].titulo), stdin);
@@ -125,7 +125,7 @@ int cadastrarLivros(struct Livro acervo[], int livrosJaCadastrados, int tamanhoM
             printf("Ano inválido. Digite um número: ");
             limparBuffer();
         }
-        limparBuffer(); // Consome o newline deixado pelo scanf
+        limparBuffer(); // Consome a linha deixado pelo scanf
 
         printf("Editora: ");
         fgets(acervo[i].editora, sizeof(acervo[i].editora), stdin);
@@ -134,7 +134,7 @@ int cadastrarLivros(struct Livro acervo[], int livrosJaCadastrados, int tamanhoM
         if (i < tamanhoMaximo) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
             scanf("%c", &continuar);
-            limparBuffer(); // Consome o newline e qualquer lixo
+            limparBuffer(); // Consome a linha e qualquer lixo de memoria
             if (continuar != 's' && continuar != 'S') {
                 break;
             }
