@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Gultembergue Carlos/Documents/Projetos/unicesumar/unicesumar/aulas em c",
-      "program": "c:/Users/Gultembergue Carlos/Documents/Projetos/unicesumar/unicesumar/aulas em c/build/Debug/outDebug",
+      "cwd": "c:/Users/Gultembergue Carlos/Documents/Projetos/unicesumar/unicesumar/semana 4",
+      "program": "c:/Users/Gultembergue Carlos/Documents/Projetos/unicesumar/unicesumar/semana 4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
