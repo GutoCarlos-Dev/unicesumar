@@ -1,0 +1,163 @@
+Aqui está uma lista com 20 livros, contendo dados variados para você cadastrar no seu sistema e testar as funcionalidades de listagem, pesquisa e ordenação.
+
+Lista de Livros para Teste
+1. Livro
+
+Código: 101
+Título: Código Limpo
+Autor: Robert C. Martin
+Área: Programação
+Ano: 2008
+Editora: Alta Books
+2. Livro
+
+Código: 102
+Título: O Senhor dos Anéis
+Autor: J.R.R. Tolkien
+Área: Fantasia
+Ano: 1954
+Editora: HarperCollins
+3. Livro
+
+Código: 103
+Título: Sapiens: Uma Breve História
+Autor: Yuval Noah Harari
+Área: História
+Ano: 2011
+Editora: L&PM
+4. Livro
+
+Código: 104
+Título: 1984
+Autor: George Orwell
+Área: Distopia
+Ano: 1949
+Editora: Companhia das Letras
+5. Livro
+
+Código: 105
+Título: Duna
+Autor: Frank Herbert
+Área: Ficção Científica
+Ano: 1965
+Editora: Aleph
+6. Livro
+
+Código: 106
+Título: O Programador Pragmático
+Autor: Hunt & Thomas
+Área: Programação
+Ano: 1999
+Editora: Bookman
+7. Livro
+
+Código: 107
+Título: Cem Anos de Solidão
+Autor: Gabriel García Márquez
+Área: Realismo Mágico
+Ano: 1967
+Editora: Record
+8. Livro
+
+Código: 108
+Título: O Hobbit
+Autor: J.R.R. Tolkien
+Área: Fantasia
+Ano: 1937
+Editora: HarperCollins
+9. Livro
+
+Código: 109
+Título: A Revolução dos Bichos
+Autor: George Orwell
+Área: Sátira Política
+Ano: 1945
+Editora: Companhia das Letras
+10. Livro
+
+Código: 110
+Título: Neuromancer
+Autor: William Gibson
+Área: Cyberpunk
+Ano: 1984
+Editora: Aleph
+11. Livro
+
+Código: 111
+Título: A Arte da Guerra
+Autor: Sun Tzu
+Área: Estratégia
+Ano: -500
+Editora: Jardim dos Livros
+12. Livro
+
+Código: 112
+Título: O Guia do Mochileiro
+Autor: Douglas Adams
+Área: Comédia
+Ano: 1979
+Editora: Arqueiro
+13. Livro
+
+Código: 113
+Título: O Poder do Hábito
+Autor: Charles Duhigg
+Área: Autoajuda
+Ano: 2012
+Editora: Objetiva
+14. Livro
+
+Código: 114
+Título: A Menina que Roubava Livros
+Autor: Markus Zusak
+Área: Drama Histórico
+Ano: 2005
+Editora: Intrínseca
+15. Livro
+
+Código: 115
+Título: O Nome do Vento
+Autor: Patrick Rothfuss
+Área: Fantasia
+Ano: 2007
+Editora: Arqueiro
+16. Livro
+
+Código: 116
+Título: A Linguagem de Programação C
+Autor: Kernighan & Ritchie
+Área: Programação
+Ano: 1978
+Editora: LTC
+17. Livro
+
+Código: 117
+Título: O Alquimista
+Autor: Paulo Coelho
+Área: Ficção
+Ano: 1988
+Editora: Rocco
+18. Livro
+
+Código: 118
+Título: Admirável Mundo Novo
+Autor: Aldous Huxley
+Área: Distopia
+Ano: 1932
+Editora: Globo Livros
+19. Livro
+
+Código: 119
+Título: Cosmos
+Autor: Carl Sagan
+Área: Ciência
+Ano: 1980
+Editora: Companhia das Letras
+20. Livro
+
+Código: 120
+Título: O Conto da Aia
+Autor: Margaret Atwood
+Área: Distopia
+Ano: 1985
+Editora: Rocco
