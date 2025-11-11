@@ -16,14 +16,14 @@ struct Livro {
 };
 
 // Funções principais do sistema
-void cadastrarLivros(struct Livro acervo[], int tamanho);
-void imprimirLivros(struct Livro acervo[], int tamanho);
-void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca);
-void ordenarLivros(struct Livro acervo[], int tamanho);
+int cadastrarLivros(struct Livro acervo[], int livrosJaCadastrados, int tamanhoMaximo);
+void imprimirLivros(struct Livro acervo[], int livrosCadastrados);
+void pesquisarLivro(struct Livro acervo[], int livrosCadastrados, int codigoBusca);
+void ordenarLivros(struct Livro acervo[], int livrosCadastrados);
 
 int main() {
-    struct Livro acervo[TAMANHO_ACERVO];
-    int opcao, codigoBusca;
+    struct Livro acervo[TAMANHO_ACERVO] = {0}; // Inicializa o acervo com zeros
+    int opcao, codigoBusca, livrosCadastrados = 0;
 
     do {
         // Menu principal
@@ -33,23 +33,25 @@ int main() {
         printf("3 - Pesquisar livro por código\n");
         printf("4 - Ordenar livros por ano de publicação\n");
         printf("5 - Sair\n");
+        printf("Livros cadastrados: %d de %d\n", livrosCadastrados, TAMANHO_ACERVO);
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
 
         switch(opcao) {
             case 1:
-                cadastrarLivros(acervo, TAMANHO_ACERVO);
+                livrosCadastrados = cadastrarLivros(acervo, livrosCadastrados, TAMANHO_ACERVO);
                 break;
             case 2:
-                imprimirLivros(acervo, TAMANHO_ACERVO);
+                imprimirLivros(acervo, livrosCadastrados);
                 break;
             case 3:
                 printf("Digite o código do livro: ");
-                scanf("%d", &codigoBusca);
-                pesquisarLivro(acervo, TAMANHO_ACERVO, codigoBusca);
+                if (scanf("%d", &codigoBusca) == 1) {
+                    pesquisarLivro(acervo, livrosCadastrados, codigoBusca);
+                }
                 break;
             case 4:
-                ordenarLivros(acervo, TAMANHO_ACERVO);
+                ordenarLivros(acervo, livrosCadastrados);
                 printf("Livros ordenados por ano!\n");
                 break;
             case 5:
@@ -64,45 +66,58 @@ int main() {
 }
 
 // Função para cadastrar livros
-void cadastrarLivros(struct Livro acervo[], int tamanho) {
-    int i = 0;
+int cadastrarLivros(struct Livro acervo[], int livrosJaCadastrados, int tamanhoMaximo) {
+    int i = livrosJaCadastrados;
     char continuar;
-    while (i < tamanho) {
+
+    if (i >= tamanhoMaximo) {
+        printf("\nAcervo cheio! Não é possível cadastrar mais livros.\n");
+        return i;
+    }
+
+    while (i < tamanhoMaximo) {
         printf("\nCadastro do Livro %d:\n", i + 1);
         printf("Código: ");
         scanf("%d", &acervo[i].codigo);
         getchar(); // Consome o newline deixado pelo scanf
         printf("Título: ");
-        fgets(acervo[i].titulo, 50, stdin);
+        fgets(acervo[i].titulo, sizeof(acervo[i].titulo), stdin);
         strtok(acervo[i].titulo, "\n");
         printf("Autor: ");
-        fgets(acervo[i].autor, 30, stdin);
+        fgets(acervo[i].autor, sizeof(acervo[i].autor), stdin);
         strtok(acervo[i].autor, "\n");
         printf("Área: ");
-        fgets(acervo[i].area, 30, stdin);
+        fgets(acervo[i].area, sizeof(acervo[i].area), stdin);
         strtok(acervo[i].area, "\n");
         printf("Ano: ");
         scanf("%d", &acervo[i].ano);
         getchar(); // Consome o newline deixado pelo scanf
         printf("Editora: ");
-        fgets(acervo[i].editora, 30, stdin);
+        fgets(acervo[i].editora, sizeof(acervo[i].editora), stdin);
         strtok(acervo[i].editora, "\n");
         i++;
-        if (i < tamanho) {
+        if (i < tamanhoMaximo) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
             scanf("%c", &continuar);
             getchar(); // Consome o newline
             if (continuar != 's' && continuar != 'S') {
                 break;
             }
+        } else {
+            printf("\nAcervo cheio!\n");
         }
     }
+    return i; // Retorna o novo número de livros cadastrados
 }
 
 // Função para imprimir todos os livros
-void imprimirLivros(struct Livro acervo[], int tamanho) {
+void imprimirLivros(struct Livro acervo[], int livrosCadastrados) {
     printf("\n===== LISTA DE LIVROS =====\n");
-    for (int i = 0; i < tamanho; i++) {
+    if (livrosCadastrados == 0) {
+        printf("Nenhum livro cadastrado.\n");
+        return;
+    }
+    for (int i = 0; i < livrosCadastrados; i++) {
         printf("\nLivro %d:\n", i + 1);
         printf("Código: %d\n", acervo[i].codigo);
         printf("Título: %s\n", acervo[i].titulo);
@@ -114,9 +129,14 @@ void imprimirLivros(struct Livro acervo[], int tamanho) {
 }
 
 // Função para pesquisar livro por código
-void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
+void pesquisarLivro(struct Livro acervo[], int livrosCadastrados, int codigoBusca) {
     int encontrado = 0;
-    for (int i = 0; i < tamanho; i++) {
+    if (livrosCadastrados == 0) {
+        printf("Nenhum livro cadastrado para pesquisar.\n");
+        return;
+    }
+
+    for (int i = 0; i < livrosCadastrados; i++) {
         if (acervo[i].codigo == codigoBusca) {
             printf("\nLivro encontrado:\n");
             printf("Título: %s\n", acervo[i].titulo);
@@ -134,10 +154,14 @@ void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
 }
 
 // Função para ordenar livros por ano de publicação (Bubble Sort)
-void ordenarLivros(struct Livro acervo[], int tamanho) {
+void ordenarLivros(struct Livro acervo[], int livrosCadastrados) {
     struct Livro temp;
-    for (int i = 0; i < tamanho - 1; i++) {
-        for (int j = 0; j < tamanho - i - 1; j++) {
+    if (livrosCadastrados < 2) {
+        printf("É necessário ter pelo menos 2 livros para ordenar.\n");
+        return;
+    }
+    for (int i = 0; i < livrosCadastrados - 1; i++) {
+        for (int j = 0; j < livrosCadastrados - i - 1; j++) {
             if (acervo[j].ano > acervo[j + 1].ano) {
                 temp = acervo[j];
                 acervo[j] = acervo[j + 1];
