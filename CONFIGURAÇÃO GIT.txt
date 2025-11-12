@@ -1,0 +1,76 @@
+------SUPABASE
+CONTA GUTO
+antigo
+Projetct name = marquespan
+@H1upfmf2b*
+
+novo peças
+Projetct name = marquespan2
+@H1upfmf2b*
+
+----------------------------------
+
+
+SUPABASE CONTA EMPRESA
+Substitua pelos seus valores do projeto Supabase GitHub Marquespan
+github da empresa
+
+MarquespanSPEstoque
+@Matriz321654
+
+const SUPABASE_URL = https://iutwaspoegvbebaemghy.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dHdhc3BvZWd2YmViYWVtZ2h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzMDg0MzIsImV4cCI6MjA3Njg4NDQzMn0.orZgrWLHhps1wpKbeP_fKLeF0Xjog-ECYdIkxC_LcCc'
+
+-----------------------------------------------------------
+
+GitHub
+
+
+comando para mudar o usuário no windows do github
+start rundll32.exe keymgr.dll,KRShowKeyMgr
+
+EMPRESA
+https://github.com/MarquespanSP/estoquefrotapesada
+marquespanlogisticasp@gmail.com
+MarquespanSP
+@matriz321
+
+GUTO
+GutoCarlos-Dev
+@H1upfmf2b
+
+Substitua pelos seus valores do projeto Supabase GitHub Guto
+const SUPABASE_URL = 'https://tetshxfxrdbzovajmfoz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRldHNoeGZ4cmRiem92YWptZm96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcxMDI1NDUsImV4cCI6MjA3MjY3ODU0NX0.dG09yVDrzofmRc7XmVHwgVJKVOG1xjPGkwxJGdYpk4U';
+
+
+-----------------------------------------------------------------------------------
+
+COnfiguração para mudar o usuário do Github no VSCODE E WINDOWS.
+1º no CMD 
+start rundll32.exe keymgr.dll,KRShowKeyMgr
+
+2º no terminal do VsCode
+git config --global user.name "MarquespanSP"
+git config --global user.email "marquespanlogisticasp@gmail.com"
+git config --global user.name 
+MarquespanSP
+git config --global user.email
+marquespanlogisticasp@gmail.com
+
+-----------------------------------------------------------------------------------------------
+
+git config --global user.name "GutoCarlos-Dev"
+git config --global user.email "gutoapollo@hotmail.com"
+git config --global user.name 
+GutoCarlos-Dev
+git config --global user.email
+gutoapollo@hotmail.com
+
+
+
+
+
+
+
+
