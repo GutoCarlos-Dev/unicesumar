@@ -35,7 +35,7 @@ int main() {
         }
     }
 
-    // Exibe os números em ordem crescente
+    // ok Exibe os números em ordem crescente
     printf("Números em ordem crescente:\n");
     for (i = 0; i < 5; i++) {
         printf("%d ", numeros[i]);
