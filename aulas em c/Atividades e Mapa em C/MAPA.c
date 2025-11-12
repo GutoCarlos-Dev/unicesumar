@@ -16,7 +16,7 @@ struct Livro {
 };
 
 // Funções principais do sistema
-void cadastrarLivros(struct Livro acervo[], int tamanho);
+void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros);
 void imprimirLivros(struct Livro acervo[], int tamanho);
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca);
 void ordenarLivros(struct Livro acervo[], int tamanho);
@@ -24,6 +24,7 @@ void ordenarLivros(struct Livro acervo[], int tamanho);
 int main() {
     struct Livro acervo[TAMANHO_ACERVO];
     int opcao, codigoBusca;
+    int numLivros = 0; // Contador de livros cadastrados
 
     do {
         // Menu principal
@@ -38,18 +39,18 @@ int main() {
 
         switch(opcao) {
             case 1:
-                cadastrarLivros(acervo, TAMANHO_ACERVO);
+                cadastrarLivros(acervo, TAMANHO_ACERVO, &numLivros);
                 break;
             case 2:
-                imprimirLivros(acervo, TAMANHO_ACERVO);
+                imprimirLivros(acervo, numLivros);
                 break;
             case 3:
                 printf("Digite o código do livro: ");
                 scanf("%d", &codigoBusca);
-                pesquisarLivro(acervo, TAMANHO_ACERVO, codigoBusca);
+                pesquisarLivro(acervo, numLivros, codigoBusca);
                 break;
             case 4:
-                ordenarLivros(acervo, TAMANHO_ACERVO);
+                ordenarLivros(acervo, numLivros);
                 printf("Livros ordenados por ano!\n");
                 break;
             case 5:
@@ -64,8 +65,8 @@ int main() {
 }
 
 // Função para cadastrar livros
-void cadastrarLivros(struct Livro acervo[], int tamanho) {
-    int i = 0;
+void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
+    int i = *numLivros;
     char continuar;
     while (i < tamanho) {
         printf("\nCadastro do Livro %d:\n", i + 1);
@@ -87,6 +88,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho) {
         printf("Editora: ");
         fgets(acervo[i].editora, 30, stdin);
         strtok(acervo[i].editora, "\n");
+        (*numLivros)++;
         i++;
         if (i < tamanho) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
