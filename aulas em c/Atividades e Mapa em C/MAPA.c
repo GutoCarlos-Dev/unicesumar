@@ -72,7 +72,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         printf("\nCadastro do Livro %d:\n", i + 1);
         printf("Código: ");
         scanf("%d", &acervo[i].codigo);
-        getchar(); // Consome o newline deixado pelo scanf
+        getchar(); // Consome o indice 0\n deixado pelo scanf
         printf("Título: ");
         fgets(acervo[i].titulo, 50, stdin);
         strtok(acervo[i].titulo, "\n");
@@ -84,7 +84,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         strtok(acervo[i].area, "\n");
         printf("Ano: ");
         scanf("%d", &acervo[i].ano);
-        getchar(); // Consome o newline deixado pelo scanf
+        getchar(); // Consome o indice 0\n deixado pelo scanf
         printf("Editora: ");
         fgets(acervo[i].editora, 30, stdin);
         strtok(acervo[i].editora, "\n");
@@ -93,7 +93,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         if (i < tamanho) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
             scanf("%c", &continuar);
-            getchar(); // Consome o newline
+            getchar(); // Consome o indice 0\n deixado pelo scanf
             if (continuar != 's' && continuar != 'S') {
                 break;
             }
