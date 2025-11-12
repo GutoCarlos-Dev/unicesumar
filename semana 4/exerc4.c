@@ -22,6 +22,7 @@ int main() {
     for (i = 0; i < 5; i++) {
         scanf("%d", &numeros[i]);
     }
+    
 
     // Ordena os números usando o método da bolha (bubble sort)
     for (i = 0; i < 4; i++) {
