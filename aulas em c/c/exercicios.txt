@@ -1,0 +1,36 @@
+/*  Exercicio 3
+    Escreva um programa que solicite 2 números para o usuário e
+    calcule uma multiplicação entre esses dois números.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int num1, num2;
+    printf("Digite o primeiro numero: ");
+    scanf("%d", &num1);
+    printf("Digite o segundo numero: ");
+    scanf("%d", &num2);
+    printf("A multiplicacao entre %d e %d eh: %d\n", num1, num2, num1*num2);
+    
+    return 0;
+}
+
+/*  Exercicio 4
+    Escreva um programa que receba o salário de uma pessoa e calcule um aumento de 10%.
+*/
+
+
+#include <stdio.h>
+int main(){
+    float salario;
+    printf("Digite o salario: ");
+    scanf("%f", &salario);
+    float aumento = salario * 0.10;
+    float novo_salario = salario + aumento;
+    printf("O novo salario com aumento de 10%% eh: %.2f\n", novo_salario);
+    return 0;
+}
+
+
+
