@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <locale.h>
 
 #define TAMANHO_ACERVO 20 // Constante que define o tamanho máximo do acervo
 
