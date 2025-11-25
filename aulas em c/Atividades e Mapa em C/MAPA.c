@@ -1,8 +1,13 @@
 //MAPA - ADSIS - LINGUAGEM E TÉCNICAS DE PROGRAMAÇÃO - 54_2025
 
+// stdio.h (Standard Input/Output): Fornece as funções de entrada e saída de dados,
+// como printf() para exibir informações na tela e scanf() para ler dados do teclado.
 #include <stdio.h>
+// string.h (String): Contém funções para manipulação de strings (sequências de caracteres),
+// como strcspn() usada aqui para remover a quebra de linha das strings lidas.
 #include <string.h>
-#include <locale.h>
+// stdlib.h (Standard Library): Oferece funções de propósito geral, incluindo gerenciamento de memória,
+// conversão de tipos e, neste caso, a função system() para executar comandos do sistema operacional.
 #include <stdlib.h>
 
 #define TAMANHO_ACERVO 20 // Constante que define o tamanho máximo do acervo
@@ -28,10 +33,6 @@ int main() {
     int opcao, codigoBusca;
     int numLivros = 0; // Contador de livros cadastrados
 
-    // Configura o console para aceitar caracteres UTF-8 (alternativa mais robusta)
-    system("chcp 65001 > nul");
-
-    setlocale(LC_ALL, "Portuguese");
 
     do {
         // Menu principal
@@ -52,7 +53,7 @@ int main() {
                 imprimirLivros(acervo, numLivros);
                 break;
             case 3:
-                printf("Digite o código do livro: ");
+                printf("Digite o codigo do livro: ");
                 scanf("%d", &codigoBusca);
                 pesquisarLivro(acervo, numLivros, codigoBusca);
                 break;
@@ -64,7 +65,7 @@ int main() {
                 printf("Encerrando o programa...\n");
                 break;
             default:
-                printf("Opção inválida!\n");
+                printf("Opcao invalida!\n");
         }
     } while(opcao != 5);
 
@@ -77,16 +78,16 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
     char continuar;
     while (i < tamanho) {
         printf("\nCadastro do Livro %d:\n", i + 1);
-        printf("Código: ");
+        printf("codigo: ");
         scanf("%d", &acervo[i].codigo);
         while (getchar() != '\n'); // Limpa o buffer de entrada
-        printf("Título: ");
+        printf("Titulo: ");
         fgets(acervo[i].titulo, 50, stdin);
         acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0;
         printf("Autor: ");
         fgets(acervo[i].autor, 30, stdin);
         acervo[i].autor[strcspn(acervo[i].autor, "\n")] = 0;
-        printf("Área: ");
+        printf("Area: ");
         fgets(acervo[i].area, 30, stdin);
         acervo[i].area[strcspn(acervo[i].area, "\n")] = 0;
         printf("Ano: ");
@@ -118,16 +119,16 @@ void imprimirLivros(struct Livro acervo[], int tamanho) {
     printf("\n===== LISTA DE LIVROS =====\n");
     for (int i = 0; i < tamanho; i++) {
         printf("\nLivro %d:\n", i + 1);
-        printf("Código: %d\n", acervo[i].codigo);
-        printf("Título: %s\n", acervo[i].titulo);
+        printf("codigo: %d\n", acervo[i].codigo);
+        printf("Titulo: %s\n", acervo[i].titulo);
         printf("Autor: %s\n", acervo[i].autor);
-        printf("Área: %s\n", acervo[i].area);
+        printf("Area: %s\n", acervo[i].area);
         printf("Ano: %d\n", acervo[i].ano);
         printf("Editora: %s\n", acervo[i].editora);
     }
 }
 
-// Função para pesquisar livro por código
+// Função para pesquisar livro por codigo
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
     if (tamanho == 0) {
         printf("\nNenhum livro cadastrado para pesquisar.\n");
@@ -138,9 +139,9 @@ void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
     for (int i = 0; i < tamanho; i++) {
         if (acervo[i].codigo == codigoBusca) {
             printf("\nLivro encontrado:\n");
-            printf("Título: %s\n", acervo[i].titulo);
+            printf("Titulo: %s\n", acervo[i].titulo);
             printf("Autor: %s\n", acervo[i].autor);
-            printf("Área: %s\n", acervo[i].area);
+            printf("Area: %s\n", acervo[i].area);
             printf("Ano: %d\n", acervo[i].ano);
             printf("Editora: %s\n", acervo[i].editora);
             encontrado = 1;
@@ -148,14 +149,14 @@ void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
         }
     }
     if (!encontrado) {
-        printf("Livro com código %d não encontrado.\n", codigoBusca);
+        printf("Livro com codigo %d nao encontrado.\n", codigoBusca);
     }
 }
 
 // Função para ordenar livros por ano de publicação (Bubble Sort)
 void ordenarLivros(struct Livro acervo[], int tamanho) {
     if (tamanho < 2) {
-        // Não há o que ordenar
+        // nao há o que ordenar
         return;
     }
 
