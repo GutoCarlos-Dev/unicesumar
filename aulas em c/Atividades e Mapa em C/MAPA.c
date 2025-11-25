@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+#include <stdlib.h>
 
 #define TAMANHO_ACERVO 20 // Constante que define o tamanho máximo do acervo
 
@@ -27,15 +28,20 @@ int main() {
     int opcao, codigoBusca;
     int numLivros = 0; // Contador de livros cadastrados
 
+    // Configura o console para aceitar caracteres UTF-8 (alternativa mais robusta)
+    system("chcp 65001 > nul");
+
+    setlocale(LC_ALL, "Portuguese");
+
     do {
         // Menu principal
         printf("\n===== MENU BIBLIOTECA =====\n");
         printf("1 - Cadastrar livros\n");
         printf("2 - Imprimir todos os livros\n");
-        printf("3 - Pesquisar livro por código\n");
-        printf("4 - Ordenar livros por ano de publicação\n");
+        printf("3 - Pesquisar livro por codigo\n");
+        printf("4 - Ordenar livros por ano de publicacao\n");
         printf("5 - Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch(opcao) {
@@ -73,22 +79,22 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         printf("\nCadastro do Livro %d:\n", i + 1);
         printf("Código: ");
         scanf("%d", &acervo[i].codigo);
-        getchar(); // Consome o indice 0\n deixado pelo scanf
+        while (getchar() != '\n'); // Limpa o buffer de entrada
         printf("Título: ");
         fgets(acervo[i].titulo, 50, stdin);
-        strtok(acervo[i].titulo, "\n");
+        acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0;
         printf("Autor: ");
         fgets(acervo[i].autor, 30, stdin);
-        strtok(acervo[i].autor, "\n");
+        acervo[i].autor[strcspn(acervo[i].autor, "\n")] = 0;
         printf("Área: ");
         fgets(acervo[i].area, 30, stdin);
-        strtok(acervo[i].area, "\n");
+        acervo[i].area[strcspn(acervo[i].area, "\n")] = 0;
         printf("Ano: ");
         scanf("%d", &acervo[i].ano);
-        getchar(); // Consome o indice 0\n deixado pelo scanf
+        while (getchar() != '\n'); // Limpa o buffer de entrada
         printf("Editora: ");
         fgets(acervo[i].editora, 30, stdin);
-        strtok(acervo[i].editora, "\n");
+        acervo[i].editora[strcspn(acervo[i].editora, "\n")] = 0;
         (*numLivros)++;
         i++;
         if (i < tamanho) {
@@ -104,6 +110,11 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
 
 // Função para imprimir todos os livros
 void imprimirLivros(struct Livro acervo[], int tamanho) {
+    if (tamanho == 0) {
+        printf("\nNenhum livro cadastrado.\n");
+        return;
+    }
+
     printf("\n===== LISTA DE LIVROS =====\n");
     for (int i = 0; i < tamanho; i++) {
         printf("\nLivro %d:\n", i + 1);
@@ -118,6 +129,11 @@ void imprimirLivros(struct Livro acervo[], int tamanho) {
 
 // Função para pesquisar livro por código
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
+    if (tamanho == 0) {
+        printf("\nNenhum livro cadastrado para pesquisar.\n");
+        return;
+    }
+
     int encontrado = 0;
     for (int i = 0; i < tamanho; i++) {
         if (acervo[i].codigo == codigoBusca) {
@@ -138,6 +154,11 @@ void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
 
 // Função para ordenar livros por ano de publicação (Bubble Sort)
 void ordenarLivros(struct Livro acervo[], int tamanho) {
+    if (tamanho < 2) {
+        // Não há o que ordenar
+        return;
+    }
+
     struct Livro temp;
     for (int i = 0; i < tamanho - 1; i++) {
         for (int j = 0; j < tamanho - i - 1; j++) {
