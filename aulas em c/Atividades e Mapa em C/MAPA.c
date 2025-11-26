@@ -1,13 +1,5 @@
-//MAPA - ADSIS - LINGUAGEM E TÉCNICAS DE PROGRAMAÇÃO - 54_2025
-
-// stdio.h (Standard Input/Output): Fornece as funções de entrada e saída de dados,
-// como printf() para exibir informações na tela e scanf() para ler dados do teclado.
 #include <stdio.h>
-// string.h (String): Contém funções para manipulação de strings (sequências de caracteres),
-// como strcspn() usada aqui para remover a quebra de linha das strings lidas.
 #include <string.h>
-// stdlib.h (Standard Library): Oferece funções de propósito geral, incluindo gerenciamento de memória,
-// conversão de tipos e, neste caso, a função system() para executar comandos do sistema operacional.
 #include <stdlib.h>
 
 #define TAMANHO_ACERVO 20 // Constante que define o tamanho máximo do acervo
@@ -22,7 +14,7 @@ struct Livro {
     char editora[30];
 };
 
-// Funções principais do sistema
+// Assinaturas ou Funções principais do sistema
 void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros);
 void imprimirLivros(struct Livro acervo[], int tamanho);
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca);
@@ -80,7 +72,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         printf("\nCadastro do Livro %d:\n", i + 1);
         printf("codigo: ");
         scanf("%d", &acervo[i].codigo);
-        while (getchar() != '\n'); // Limpa o buffer de entrada
+        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
         printf("Titulo: ");
         fgets(acervo[i].titulo, 50, stdin);
         acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0;
@@ -92,7 +84,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         acervo[i].area[strcspn(acervo[i].area, "\n")] = 0;
         printf("Ano: ");
         scanf("%d", &acervo[i].ano);
-        while (getchar() != '\n'); // Limpa o buffer de entrada
+        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
         printf("Editora: ");
         fgets(acervo[i].editora, 30, stdin);
         acervo[i].editora[strcspn(acervo[i].editora, "\n")] = 0;
@@ -101,7 +93,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         if (i < tamanho) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
             scanf("%c", &continuar);
-            getchar(); // Consome o indice 0\n deixado pelo scanf
+            getchar(); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
             if (continuar != 's' && continuar != 'S') {
                 break;
             }
