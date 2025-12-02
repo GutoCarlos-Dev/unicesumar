@@ -3,7 +3,7 @@
     Essa loja pode possuir ATÃ‰ 50 produtos.
     Cada produto possui:
         - Nome
-        - CÃ³digo
+        - código
         - PreÃ§o
         - Quantidade em estoque
     
@@ -32,34 +32,111 @@ struct Produto {
 int main() {
     setlocale(LC_ALL, "Portuguese");
     struct Produto produtos[MAX_PRODUTOS];
-    int opcao;
+    int opcao, num_produtos = 0, cod_busca, qtd_reduzir, i, encontrado;
 
     do {
-        printf("Escolha uma opÃ§Ã£o: \n");
-        printf("[1] Cadastrar Produto \
-            \n[2] Pesquisar Produto \
-            \n[3] Alterar Quantidade em Estoque \
-            \n[4] Listar Todos \
-            \n[5] Sair\n");
+        printf("\n--- CONTROLE DE ESTOQUE ---\n");
+        printf("Produtos cadastrados: %d de %d\n", num_produtos, MAX_PRODUTOS);
+        printf("Escolha uma opção:\n");
+        printf("[1] Cadastrar Produto\n");
+        printf("[2] Pesquisar Produto por Código\n");
+        printf("[3] Reduzir Estoque de Produto\n");
+        printf("[4] Listar Todos os Produtos\n");
+        printf("[5] Sair\n");
+        printf("Opção: ");
         scanf("%d", &opcao);
-        getchar();
+        getchar(); // Limpa o buffer de entrada
 
         switch (opcao) {
             case 1:
+                if (num_produtos >= MAX_PRODUTOS) {
+                    printf("Erro: Estoque cheio. NÃO É possÍvel cadastrar mais produtos.\n");
+                } else {
+                    printf("\n--- Cadastro de Produto ---\n");
+                    printf("Código: ");
+                    scanf("%d", &produtos[num_produtos].cod);
+                    getchar();
+
+                    printf("Nome: ");
+                    fgets(produtos[num_produtos].nome, 30, stdin);
+                    produtos[num_produtos].nome[strcspn(produtos[num_produtos].nome, "\n")] = '\0'; // Remove o \n
+
+                    printf("Preço: ");
+                    scanf("%f", &produtos[num_produtos].preco);
+
+                    printf("Quantidade em estoque: ");
+                    scanf("%d", &produtos[num_produtos].qtd);
+
+                    printf("Produto '%s' cadastrado com sucesso!\n", produtos[num_produtos].nome);
+                    num_produtos++;
+                }
                 break;
             case 2:
+                printf("\nDigite o código do produto a ser pesquisado: ");
+                scanf("%d", &cod_busca);
+                encontrado = 0;
+                for (i = 0; i < num_produtos; i++) {
+                    if (produtos[i].cod == cod_busca) {
+                        printf("\n--- Produto Encontrado ---\n");
+                        printf("Código: %d\n", produtos[i].cod);
+                        printf("Nome: %s\n", produtos[i].nome);
+                        printf("Preçoo: R$ %.2f\n", produtos[i].preco);
+                        printf("Quantidade em Estoque: %d\n", produtos[i].qtd);
+                        encontrado = 1;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    printf("Produto com código %d nÃ£o encontrado.\n", cod_busca);
+                }
                 break;
             case 3:
+                printf("\nDigite o código do produto para reduzir o estoque: ");
+                scanf("%d", &cod_busca);
+                encontrado = 0;
+                for (i = 0; i < num_produtos; i++) {
+                    if (produtos[i].cod == cod_busca) {
+                        printf("Produto: %s | Estoque atual: %d\n", produtos[i].nome, produtos[i].qtd);
+                        printf("Digite a quantidade a ser removida: ");
+                        scanf("%d", &qtd_reduzir);
+
+                        if (qtd_reduzir > 0 && qtd_reduzir <= produtos[i].qtd) {
+                            produtos[i].qtd -= qtd_reduzir;
+                            printf("Estoque atualizado: %d\n", produtos[i].qtd);
+                        } else {
+                            printf("Quantidade invÃ¡lida ou insuficiente em estoque.\n");
+                        }
+                        encontrado = 1;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    printf("Produto com código %d nÃ£o encontrado.\n", cod_busca);
+                }
                 break;
             case 4:
+                if (num_produtos == 0) {
+                    printf("\nNenhum produto cadastrado.\n");
+                } else {
+                    printf("\n--- Lista de Todos os Produtos ---\n");
+                    for (i = 0; i < num_produtos; i++) {
+                        printf("----------------------------------\n");
+                        printf("Produto %d\n", i + 1);
+                        printf("código: %d\n", produtos[i].cod);
+                        printf("Nome: %s\n", produtos[i].nome);
+                        printf("PreÃ§o: R$ %.2f\n", produtos[i].preco);
+                        printf("Quantidade em Estoque: %d\n", produtos[i].qtd);
+                    }
+                }
                 break;
             case 5:
-                printf("AtÃ© logo.");
-                return 0;
+                printf("AtÃ© logo.\n");
+                break;
             default:
                 printf("OpÃ§Ã£o invÃ¡lida. Tente novamente.\n");
-                break;   
+                break;
         }
+    } while(opcao != 5);
 
-    }while(1);
+    return 0;
 }

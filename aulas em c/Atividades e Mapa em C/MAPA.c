@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <locale.h>
 
-#define TAMANHO_ACERVO 20 // Constante que define o tamanho mÃ¡ximo do acervo
+#define TAMANHO_ACERVO 20 // Constante que define o tamanho máximo do acervo
 
 // Estrutura que representa um livro
 struct Livro {
@@ -14,13 +15,14 @@ struct Livro {
     char editora[30];
 };
 
-// Assinaturas ou FunÃ§Ãµes principais do sistema
+// Assinaturas ou Funções principais do sistema
 void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros);
 void imprimirLivros(struct Livro acervo[], int tamanho);
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca);
 void ordenarLivros(struct Livro acervo[], int tamanho);
 
 int main() {
+	setlocale(LC_ALL, "Portuguese");
     struct Livro acervo[TAMANHO_ACERVO];
     int opcao, codigoBusca;
     int numLivros = 0; // Contador de livros cadastrados
@@ -64,7 +66,7 @@ int main() {
     return 0;
 }
 
-// FunÃ§Ã£o para cadastrar livros
+// Função para cadastrar livros
 void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
     int i = *numLivros;
     char continuar;
@@ -72,7 +74,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         printf("\nCadastro do Livro %d:\n", i + 1);
         printf("codigo: ");
         scanf("%d", &acervo[i].codigo);
-        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer atÃ© encontrar a quebra de linha.
+        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
         printf("Titulo: ");
         fgets(acervo[i].titulo, 50, stdin);
         acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0;
@@ -84,7 +86,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         acervo[i].area[strcspn(acervo[i].area, "\n")] = 0;
         printf("Ano: ");
         scanf("%d", &acervo[i].ano);
-        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer atÃ© encontrar a quebra de linha.
+        while (getchar() != '\n'); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
         printf("Editora: ");
         fgets(acervo[i].editora, 30, stdin);
         acervo[i].editora[strcspn(acervo[i].editora, "\n")] = 0;
@@ -93,7 +95,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
         if (i < tamanho) {
             printf("\nDeseja cadastrar outro livro? (s/n): ");
             scanf("%c", &continuar);
-            getchar(); // Consome todos os caracteres restantes no buffer atÃ© encontrar a quebra de linha.
+            getchar(); // Consome todos os caracteres restantes no buffer até encontrar a quebra de linha.
             if (continuar != 's' && continuar != 'S') {
                 break;
             }
@@ -101,7 +103,7 @@ void cadastrarLivros(struct Livro acervo[], int tamanho, int *numLivros) {
     }
 }
 
-// FunÃ§Ã£o para imprimir todos os livros
+// Função para imprimir todos os livros
 void imprimirLivros(struct Livro acervo[], int tamanho) {
     if (tamanho == 0) {
         printf("\nNenhum livro cadastrado.\n");
@@ -120,7 +122,7 @@ void imprimirLivros(struct Livro acervo[], int tamanho) {
     }
 }
 
-// FunÃ§Ã£o para pesquisar livro por codigo
+// Função para pesquisar livro por codigo
 void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
     if (tamanho == 0) {
         printf("\nNenhum livro cadastrado para pesquisar.\n");
@@ -145,10 +147,10 @@ void pesquisarLivro(struct Livro acervo[], int tamanho, int codigoBusca) {
     }
 }
 
-// FunÃ§Ã£o para ordenar livros por ano de publicaÃ§Ã£o (Bubble Sort)
+// Função para ordenar livros por ano de publicação (Bubble Sort)
 void ordenarLivros(struct Livro acervo[], int tamanho) {
     if (tamanho < 2) {
-        // nao hÃ¡ o que ordenar
+        // nao há o que ordenar
         return;
     }
 
